@@ -1,6 +1,6 @@
 {
   "name": "objectpath",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Parse js object paths using both dot and bracket notation. Stringify an array of properties into a valid path.",
   "main": "index.js",
   "directories": {
