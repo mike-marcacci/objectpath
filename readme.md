@@ -1,6 +1,8 @@
 ObjectPath
 ==========
 
+[![Build Status](https://travis-ci.org/mike-marcacci/objectpath.svg)](https://travis-ci.org/mike-marcacci/objectpath)
+
 Parse js object paths using both dot and bracket notation. Stringify an array of properties into a valid path.
 
 - parse JS object reference fragments
