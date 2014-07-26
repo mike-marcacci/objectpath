@@ -1,0 +1,97 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/opt/nvm/v0.10.29/bin/node',
+1 verbose cli   '/usr/local/opt/nvm/v0.10.29/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@1.4.14
+3 info using node@v0.10.29
+4 verbose node symlink /usr/local/opt/nvm/v0.10.29/bin/node
+5 verbose publish [ '.' ]
+6 verbose cache add [ '.', null ]
+7 verbose cache add name=undefined spec="." args=[".",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: '.',
+8 verbose parsed url   path: '.',
+8 verbose parsed url   href: '.' }
+9 silly lockFile 3a52ce78- .
+10 verbose lock . /Users/mikemarcacci/.npm/3a52ce78-.lock
+11 verbose tar pack [ '/Users/mikemarcacci/.npm/ObjectPath/0.0.2/package.tgz', '.' ]
+12 verbose tarball /Users/mikemarcacci/.npm/ObjectPath/0.0.2/package.tgz
+13 verbose folder .
+14 info prepublish ObjectPath@0.0.2
+15 silly lockFile 1f1177db-tar tar://.
+16 verbose lock tar://. /Users/mikemarcacci/.npm/1f1177db-tar.lock
+17 silly lockFile b4e5856d-npm-ObjectPath-0-0-2-package-tgz tar:///Users/mikemarcacci/.npm/ObjectPath/0.0.2/package.tgz
+18 verbose lock tar:///Users/mikemarcacci/.npm/ObjectPath/0.0.2/package.tgz /Users/mikemarcacci/.npm/b4e5856d-npm-ObjectPath-0-0-2-package-tgz.lock
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 1f1177db-tar tar://.
+21 silly lockFile b4e5856d-npm-ObjectPath-0-0-2-package-tgz tar:///Users/mikemarcacci/.npm/ObjectPath/0.0.2/package.tgz
+22 silly lockFile b4e5856d-npm-ObjectPath-0-0-2-package-tgz tar:///Users/mikemarcacci/.npm/ObjectPath/0.0.2/package.tgz
+23 silly lockFile d676a1ac-cci-npm-ObjectPath-0-0-2-package /Users/mikemarcacci/.npm/ObjectPath/0.0.2/package
+24 verbose lock /Users/mikemarcacci/.npm/ObjectPath/0.0.2/package /Users/mikemarcacci/.npm/d676a1ac-cci-npm-ObjectPath-0-0-2-package.lock
+25 silly lockFile d676a1ac-cci-npm-ObjectPath-0-0-2-package /Users/mikemarcacci/.npm/ObjectPath/0.0.2/package
+26 silly lockFile d676a1ac-cci-npm-ObjectPath-0-0-2-package /Users/mikemarcacci/.npm/ObjectPath/0.0.2/package
+27 silly lockFile 3a52ce78- .
+28 silly lockFile 3a52ce78- .
+29 silly publish { name: 'ObjectPath',
+29 silly publish   version: '0.0.2',
+29 silly publish   description: 'Parse js object paths using both dot and bracket notation. Stringify an array of properties into a valid path.',
+29 silly publish   main: 'index.js',
+29 silly publish   directories: { test: 'test' },
+29 silly publish   scripts: { test: 'mocha test/*' },
+29 silly publish   author: { name: 'Mike Marcacci', email: 'mike.marcacci@gmail.com' },
+29 silly publish   license: 'MIT',
+29 silly publish   devDependencies: { chai: '^1.9.1', mocha: '^1.21.0' },
+29 silly publish   readme: 'ObjectPath\n==========\n\nParse js object paths using both dot and bracket notation. Stringify an array of properties into a valid path.\n\nParse a Path\n------------\n\n```js\nObjectPath.parse(\'a[1].b.c.d["e"]["f"].g\')\n// => [\'a\',\'1\',\'b\',\'c\',\'d\',\'e\',\'f\',\'g\']\n```\n\nBuild a Path\n------------\n\n```js\nObjectPath.parse(\'a[1].b.c.d["e"]["f"].g\')\n// => [\'a\',\'1\',\'b\',\'c\',\'d\',\'e\',\'f\',\'g\']\n```',
+29 silly publish   readmeFilename: 'readme.md',
+29 silly publish   gitHead: '8f0bacf9f707beb89a0886b8b49cc76ce42e0951',
+29 silly publish   _id: 'ObjectPath@0.0.2',
+29 silly publish   _shasum: '6858988e29beefacaf44cb82aaf6a46f5f1479e9',
+29 silly publish   _from: '.' }
+30 verbose url raw ObjectPath
+31 verbose url resolving [ 'https://registry.npmjs.org/', './ObjectPath' ]
+32 verbose url resolved https://registry.npmjs.org/ObjectPath
+33 info trying registry request attempt 1 at 15:31:53
+34 http PUT https://registry.npmjs.org/ObjectPath
+35 http 403 https://registry.npmjs.org/ObjectPath
+36 verbose headers { date: 'Sat, 26 Jul 2014 22:31:54 GMT',
+36 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+36 verbose headers   'content-type': 'application/json',
+36 verbose headers   'cache-control': 'max-age=60',
+36 verbose headers   'content-length': '76',
+36 verbose headers   'accept-ranges': 'bytes',
+36 verbose headers   via: '1.1 varnish',
+36 verbose headers   'x-served-by': 'cache-sjc3124-SJC',
+36 verbose headers   'x-cache': 'MISS',
+36 verbose headers   'x-cache-hits': '0',
+36 verbose headers   'x-timer': 'S1406413914.481612,VS0,VE113',
+36 verbose headers   'keep-alive': 'timeout=10, max=50',
+36 verbose headers   connection: 'Keep-Alive' }
+37 error publish Failed PUT 403
+38 error Error: forbidden New packages must have all-lowercase names: ObjectPath
+38 error     at RegClient.<anonymous> (/usr/local/Cellar/nvm/0.11.1/v0.10.29/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:274:14)
+38 error     at Request._callback (/usr/local/Cellar/nvm/0.11.1/v0.10.29/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:212:65)
+38 error     at Request.self.callback (/usr/local/Cellar/nvm/0.11.1/v0.10.29/lib/node_modules/npm/node_modules/request/request.js:123:22)
+38 error     at Request.emit (events.js:98:17)
+38 error     at Request.<anonymous> (/usr/local/Cellar/nvm/0.11.1/v0.10.29/lib/node_modules/npm/node_modules/request/request.js:893:14)
+38 error     at Request.emit (events.js:117:20)
+38 error     at IncomingMessage.<anonymous> (/usr/local/Cellar/nvm/0.11.1/v0.10.29/lib/node_modules/npm/node_modules/request/request.js:844:12)
+38 error     at IncomingMessage.emit (events.js:117:20)
+38 error     at _stream_readable.js:929:16
+38 error     at process._tickCallback (node.js:419:13)
+39 error If you need help, you may report this *entire* log,
+39 error including the npm and node versions, at:
+39 error     <http://github.com/npm/npm/issues>
+40 error System Darwin 14.0.0
+41 error command "/usr/local/opt/nvm/v0.10.29/bin/node" "/usr/local/opt/nvm/v0.10.29/bin/npm" "publish"
+42 error cwd /Users/mikemarcacci/Documents/Repositories/objectpath
+43 error node -v v0.10.29
+44 error npm -v 1.4.14
+45 verbose exit [ 1, true ]
