@@ -14,5 +14,24 @@
   "devDependencies": {
     "chai": "^1.9.1",
     "mocha": "^1.21.0"
-  }
+  },
+  "keywords": [
+    "js object",
+    "dot notation",
+    "bracket notation",
+    "path",
+    "parse",
+    "string"
+  ],
+  "dependencies": {
+    "chai": "^1.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mike-marcacci/objectpath.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mike-marcacci/objectpath/issues"
+  },
+  "homepage": "https://github.com/mike-marcacci/objectpath"
 }

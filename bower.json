@@ -8,6 +8,25 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "test"
+    "test",
+    "bower_components",
+    "tests"
+  ],
+  "homepage": "https://github.com/mike-marcacci/objectpath",
+  "authors": [
+    "Mike Marcacci <mike.marcacci@gmail.com>"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "js object",
+    "dot notation",
+    "bracket notation",
+    "path",
+    "parse",
+    "string"
   ]
 }
