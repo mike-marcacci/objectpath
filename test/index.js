@@ -94,3 +94,15 @@ describe('Stringify', function(){
 		assert.deepEqual(ObjectPath.stringify(['[\'a\']','[\\"a\\"]'],'"'), '["[\'a\']"]["[\\\\"a\\\\"]"]', 'incorrectly stringified escape character');
 	});
 });
+
+describe('Normalize', function(){
+	it('normalizes a string', function(){
+		assert.deepEqual(ObjectPath.normalize('a.b["c"]'), '[\'a\'][\'b\'][\'c\']', 'incorrectly normalized a string with single quotes');
+		assert.deepEqual(ObjectPath.normalize('a.b["c"]','"'), '["a"]["b"]["c"]', 'incorrectly normalized a string with double quotes');
+	});
+
+	it('normalizes an array', function(){
+		assert.deepEqual(ObjectPath.normalize(['a','b','c']), '[\'a\'][\'b\'][\'c\']', 'incorrectly normalized an array with single quotes');
+		assert.deepEqual(ObjectPath.normalize(['a','b','c'],'"'), '["a"]["b"]["c"]', 'incorrectly normalized an array with double quotes');
+	});
+});
