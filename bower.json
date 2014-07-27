@@ -2,7 +2,7 @@
   "name": "objectpath",
   "author": "Mike Marcacci <mike.marcacci@gmail.com>",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Parse js object paths using both dot and bracket notation. Stringify an array of properties into a valid path.",
   "main": "lib/ObjectPath.js",
   "ignore": [
