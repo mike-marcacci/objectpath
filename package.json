@@ -21,7 +21,9 @@
     "bracket notation",
     "path",
     "parse",
-    "string"
+    "string",
+    "object path",
+    "object"
   ],
   "dependencies": {},
   "repository": {
