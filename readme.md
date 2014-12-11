@@ -1,3 +1,10 @@
+Important!
+==========
+
+This was all blatantly stolen from Mike Marcacci here: https://github.com/mike-marcacci/objectpath.git
+I've made changes so that I can use this module with webpack and have submitted a PR to the original source.
+When (if) that gets merged, I'll delete this repo.
+
 ObjectPath
 ==========
 
