@@ -1,8 +1,11 @@
 {
-  "name": "chensley-objectpath",
-  "author": "Clifton Hensley <clifton.hensley@gmail.com>",
+  "name": "objectpath",
+  "author": {
+    "name": "Mike Marcacci",
+    "email": "mike.marcacci@gmail.com"
+  },
   "license": "MIT",
-  "version": "1.1.1",
+  "version": "1.1.0",
   "description": "Parse js object paths using both dot and bracket notation. Stringify an array of properties into a valid path.",
   "main": "index.js",
   "directories": {
@@ -28,10 +31,31 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/CliftonH/objectpath.git"
+    "url": "git+https://github.com/mike-marcacci/objectpath.git"
   },
   "bugs": {
-    "url": "https://github.com/CliftonH/objectpath/issues"
+    "url": "https://github.com/mike-marcacci/objectpath/issues"
   },
-  "homepage": "https://github.com/CliftonH/objectpath"
+  "homepage": "https://github.com/mike-marcacci/objectpath",
+  "gitHead": "056b7d9903bae28337adbe54d6979bab795df807",
+  "_id": "objectpath@1.1.0",
+  "_shasum": "91d29698ace32b58f4cbaeec1d16bc62a454455a",
+  "_from": "objectpath@>=1.1.0 <2.0.0",
+  "_npmVersion": "1.4.28",
+  "_npmUser": {
+    "name": "mike-marcacci",
+    "email": "mike.marcacci@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "mike-marcacci",
+      "email": "mike.marcacci@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "91d29698ace32b58f4cbaeec1d16bc62a454455a",
+    "tarball": "http://registry.npmjs.org/objectpath/-/objectpath-1.1.0.tgz"
+  },
+  "_resolved": "https://registry.npmjs.org/objectpath/-/objectpath-1.1.0.tgz",
+  "readme": "ERROR: No README data found!"
 }
