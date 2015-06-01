@@ -3,7 +3,7 @@ ObjectPath
 
 [![Join the chat at https://gitter.im/mike-marcacci/objectpath](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mike-marcacci/objectpath?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![Build Status](https://travis-ci.org/mike-marcacci/objectpath.svg)](https://travis-ci.org/mike-marcacci/objectpath)
+[![Build Status](https://travis-ci.org/mike-marcacci/objectpath.svg?branch=master)](https://travis-ci.org/mike-marcacci/objectpath)
 
 Parse js object paths using both dot and bracket notation. Stringify an array of properties into a valid path.
 
