@@ -24,16 +24,18 @@ describe('Parse', function(){
 		assert.deepEqual(ObjectPath.parse('a[1].b.c.d["e"]["f"].g'), ['a','1','b','c','d','e','f','g']);
 	});
 
-	it('parses utf8 characters', function(){
-		assert.deepEqual(ObjectPath.parse('∑´ƒ©∫∆.ø'), ['∑´ƒ©∫∆','ø'], 'incorrectly parsed utf8 characters from dot notation');
-		assert.deepEqual(ObjectPath.parse('["∑´ƒ©∫∆"]["ø"]'), ['∑´ƒ©∫∆','ø'], 'incorrectly parsed utf8 characters from bracket notation');
+	it('parses unicode characters', function(){
+		assert.deepEqual(ObjectPath.parse('∑´ƒ©∫∆.ø'), ['∑´ƒ©∫∆','ø'], 'incorrectly parsed unicode characters from dot notation');
+		assert.deepEqual(ObjectPath.parse('["∑´ƒ©∫∆"]["ø"]'), ['∑´ƒ©∫∆','ø'], 'incorrectly parsed unicode characters from bracket notation');
 	});
 
 	it('parses nodes with control characters', function(){
 		assert.deepEqual(ObjectPath.parse('["a.b."]'), ['a.b.'], 'incorrectly parsed dots from inside brackets');
-		assert.deepEqual(ObjectPath.parse('["\""][\'\\\'\']'), ['"','\\\''], 'incorrectly parsed escaped quotes');
+		assert.deepEqual(ObjectPath.parse('["\""][\'\\\'\']'), ['"','\''], 'incorrectly parsed escaped quotes');
 		assert.deepEqual(ObjectPath.parse('["\'"][\'"\']'), ['\'','"'], 'incorrectly parsed unescaped quotes');
-		assert.deepEqual(ObjectPath.parse('["\\""][\'\\\'\']'), ['\\"','\\\''], 'incorrectly parsed escape character');
+		assert.deepEqual(ObjectPath.parse('["\\""][\'\\\'\']'), ['"','\''], 'incorrectly parsed escaped quotes');
+		assert.deepEqual(ObjectPath.parse('[\'\\"\']["\\\'"]'), ['\\"','\\\''], 'incorrectly parsed escape characters');
+		assert.deepEqual(ObjectPath.parse('["\\"]"]["\\"]\\"]"]'), ['"]','"]"]'], 'incorrectly parsed escape characters');
 		assert.deepEqual(ObjectPath.parse('["[\'a\']"][\'[\\"a\\"]\']'), ['[\'a\']','[\\"a\\"]'], 'incorrectly parsed escape character');
 	});
 });
@@ -68,14 +70,14 @@ describe('Stringify', function(){
 		assert.deepEqual(ObjectPath.stringify(['a','1','b','c','d','e','f','g'],'"'), '["a"]["1"]["b"]["c"]["d"]["e"]["f"]["g"]');
 	});
 
-	it('stringifys utf8 characters with single quotes', function(){
-		assert.deepEqual(ObjectPath.stringify(['∑´ƒ©∫∆']), '[\'∑´ƒ©∫∆\']', 'incorrectly stringified single node path with utf8');
-		assert.deepEqual(ObjectPath.stringify(['∑´ƒ©∫∆','ø']), '[\'∑´ƒ©∫∆\'][\'ø\']', 'incorrectly stringified multi-node path with utf8 characters');
+	it('stringifys unicode characters with single quotes', function(){
+		assert.deepEqual(ObjectPath.stringify(['∑´ƒ©∫∆']), '[\'∑´ƒ©∫∆\']', 'incorrectly stringified single node path with unicode');
+		assert.deepEqual(ObjectPath.stringify(['∑´ƒ©∫∆','ø']), '[\'∑´ƒ©∫∆\'][\'ø\']', 'incorrectly stringified multi-node path with unicode characters');
 	});
 
-	it('stringifys utf8 characters with double quotes', function(){
-		assert.deepEqual(ObjectPath.stringify(['∑´ƒ©∫∆'],'"'), '["∑´ƒ©∫∆"]', 'incorrectly stringified single node path with utf8');
-		assert.deepEqual(ObjectPath.stringify(['∑´ƒ©∫∆','ø'],'"'), '["∑´ƒ©∫∆"]["ø"]', 'incorrectly stringified multi-node path with utf8 characters');
+	it('stringifys unicode characters with double quotes', function(){
+		assert.deepEqual(ObjectPath.stringify(['∑´ƒ©∫∆'],'"'), '["∑´ƒ©∫∆"]', 'incorrectly stringified single node path with unicode');
+		assert.deepEqual(ObjectPath.stringify(['∑´ƒ©∫∆','ø'],'"'), '["∑´ƒ©∫∆"]["ø"]', 'incorrectly stringified multi-node path with unicode characters');
 	});
 
 	it("stringifys nodes with control characters and single quotes", function(){
