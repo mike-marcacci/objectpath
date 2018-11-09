@@ -12,8 +12,8 @@
     "test": "mocha test/*"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
-    "mocha": "^1.21.0"
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
   },
   "keywords": [
     "js object",
