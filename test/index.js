@@ -53,21 +53,21 @@ describe('Stringify', function(){
 	});
 
 	it('stringifys a numberic nodes in bracket notation with single quotes', function(){
-		assert.deepEqual(ObjectPath.stringify(['5']), '[\'5\']', 'incorrectly stringified single headless numeric node');
-		assert.deepEqual(ObjectPath.stringify(['5','a','3']), '[\'5\'].a[\'3\']', 'incorrectly stringified headless numeric multi-node');
+		assert.deepEqual(ObjectPath.stringify(['5']), '[5]', 'incorrectly stringified single headless numeric node');
+		assert.deepEqual(ObjectPath.stringify(['5','a','3']), '[5].a[3]', 'incorrectly stringified headless numeric multi-node');
 	});
 
 	it('stringifys a numberic nodes in bracket notation with double quotes', function(){
-		assert.deepEqual(ObjectPath.stringify(['5'],'"'), '["5"]', 'incorrectly stringified single headless numeric node');
-		assert.deepEqual(ObjectPath.stringify(['5','a','3'],'"'), '["5"].a["3"]', 'incorrectly stringified headless numeric multi-node');
+		assert.deepEqual(ObjectPath.stringify(['5'],'"'), '[5]', 'incorrectly stringified single headless numeric node');
+		assert.deepEqual(ObjectPath.stringify(['5','a','3'],'"'), '[5].a[3]', 'incorrectly stringified headless numeric multi-node');
 	});
 
 	it('stringifys a combination of dot and bracket notation with single quotes', function(){
-		assert.deepEqual(ObjectPath.stringify(['a','1','b','c','d','e','f','g']), 'a[\'1\'].b.c.d.e.f.g');
+		assert.deepEqual(ObjectPath.stringify(['a','1','b','c','d','e','f','g']), 'a[1].b.c.d.e.f.g');
 	});
 
 	it('stringifys a combination of dot and bracket notation with double quotes', function(){
-		assert.deepEqual(ObjectPath.stringify(['a','1','b','c','d','e','f','g'],'"'), 'a["1"].b.c.d.e.f.g');
+		assert.deepEqual(ObjectPath.stringify(['a','1','b','c','d','e','f','g'],'"'), 'a[1].b.c.d.e.f.g');
 	});
 
 	it('stringifys unicode characters with single quotes', function(){
