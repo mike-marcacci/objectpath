@@ -42,32 +42,32 @@ describe('Parse', function(){
 
 describe('Stringify', function(){
 	it('stringifys simple paths with single quotes', function(){
-		assert.deepEqual(ObjectPath.stringify(['a']), '[\'a\']', 'incorrectly stringified single node');
-		assert.deepEqual(ObjectPath.stringify(['a','b','c']), '[\'a\'][\'b\'][\'c\']', 'incorrectly stringified multi-node');
-		assert.deepEqual(ObjectPath.stringify(['a'], '\''), '[\'a\']', 'incorrectly stringified single node with excplicit single quote');
-		assert.deepEqual(ObjectPath.stringify(['a','b','c'], '\''), '[\'a\'][\'b\'][\'c\']', 'incorrectly stringified multi-node with excplicit single quote');
+		assert.deepEqual(ObjectPath.stringify(['a']), 'a', 'incorrectly stringified single node');
+		assert.deepEqual(ObjectPath.stringify(['a','b','c']), 'a.b.c', 'incorrectly stringified multi-node');
+		assert.deepEqual(ObjectPath.stringify(['a'], '\''), 'a', 'incorrectly stringified single node with excplicit single quote');
+		assert.deepEqual(ObjectPath.stringify(['a','b','c'], '\''), 'a.b.c', 'incorrectly stringified multi-node with excplicit single quote');
 	});
 	it('stringifys simple paths with double quotes', function(){
-		assert.deepEqual(ObjectPath.stringify(['a'],'"'), '["a"]', 'incorrectly stringified single node');
-		assert.deepEqual(ObjectPath.stringify(['a','b','c'],'"'), '["a"]["b"]["c"]', 'incorrectly stringified multi-node');
+		assert.deepEqual(ObjectPath.stringify(['a'],'"'), 'a', 'incorrectly stringified single node');
+		assert.deepEqual(ObjectPath.stringify(['a','b','c'],'"'), 'a.b.c', 'incorrectly stringified multi-node');
 	});
 
 	it('stringifys a numberic nodes in bracket notation with single quotes', function(){
 		assert.deepEqual(ObjectPath.stringify(['5']), '[\'5\']', 'incorrectly stringified single headless numeric node');
-		assert.deepEqual(ObjectPath.stringify(['5','a','3']), '[\'5\'][\'a\'][\'3\']', 'incorrectly stringified headless numeric multi-node');
+		assert.deepEqual(ObjectPath.stringify(['5','a','3']), '[\'5\'].a[\'3\']', 'incorrectly stringified headless numeric multi-node');
 	});
 
 	it('stringifys a numberic nodes in bracket notation with double quotes', function(){
 		assert.deepEqual(ObjectPath.stringify(['5'],'"'), '["5"]', 'incorrectly stringified single headless numeric node');
-		assert.deepEqual(ObjectPath.stringify(['5','a','3'],'"'), '["5"]["a"]["3"]', 'incorrectly stringified headless numeric multi-node');
+		assert.deepEqual(ObjectPath.stringify(['5','a','3'],'"'), '["5"].a["3"]', 'incorrectly stringified headless numeric multi-node');
 	});
 
 	it('stringifys a combination of dot and bracket notation with single quotes', function(){
-		assert.deepEqual(ObjectPath.stringify(['a','1','b','c','d','e','f','g']), '[\'a\'][\'1\'][\'b\'][\'c\'][\'d\'][\'e\'][\'f\'][\'g\']');
+		assert.deepEqual(ObjectPath.stringify(['a','1','b','c','d','e','f','g']), 'a[\'1\'].b.c.d.e.f.g');
 	});
 
 	it('stringifys a combination of dot and bracket notation with double quotes', function(){
-		assert.deepEqual(ObjectPath.stringify(['a','1','b','c','d','e','f','g'],'"'), '["a"]["1"]["b"]["c"]["d"]["e"]["f"]["g"]');
+		assert.deepEqual(ObjectPath.stringify(['a','1','b','c','d','e','f','g'],'"'), 'a["1"].b.c.d.e.f.g');
 	});
 
 	it('stringifys unicode characters with single quotes', function(){
@@ -82,29 +82,37 @@ describe('Stringify', function(){
 
 	it("stringifys nodes with control characters and single quotes", function(){
 		assert.deepEqual(ObjectPath.stringify(["a.b."],"'"), "['a.b.']", "incorrectly stringified dots from inside brackets");
-		assert.deepEqual(ObjectPath.stringify(["'","\\\""],"'"), "['\\\'']['\\\"']", "incorrectly stringified escaped quotes");
+		assert.deepEqual(ObjectPath.stringify(["'","\\\""],"'"), "['\\\'']['\\\\\"']", "incorrectly stringified escaped quotes");
 		assert.deepEqual(ObjectPath.stringify(["\"","'"],"'"), "['\"']['\\'']", "incorrectly stringified unescaped quotes");
-		assert.deepEqual(ObjectPath.stringify(["\\'","\\\""],"'"), "['\\\\'']['\\\"']", "incorrectly stringified escape character");
-		assert.deepEqual(ObjectPath.stringify(["[\"a\"]","[\\'a\\']"],"'"), "['[\"a\"]']['[\\\\'a\\\\']']", "incorrectly stringified escape character");
+		assert.deepEqual(ObjectPath.stringify(["\\'","\\\""],"'"), "['\\\\\\'']['\\\\\"']", "incorrectly stringified escape character");
+		assert.deepEqual(ObjectPath.stringify(["[\"a\"]","[\\'a\\']"],"'"), "['[\"a\"]']['[\\\\\\'a\\\\\\']']", "incorrectly stringified escape character");
+	});
+	
+	it("stringifys nodes with backslash", function(){
+		const originalProperty = ' \\" \\\\" \\\\\\';
+		const path = ObjectPath.stringify([' \\" \\\\" \\\\\\'], '"');
+		const finalProperty = JSON.parse(path.substring(1, path.length - 1));
+
+		assert.deepEqual(finalProperty, originalProperty, 'incorrectly stringified escaped backslash');
 	});
 
 	it('stringifys nodes with control characters and double quotes', function(){
 		assert.deepEqual(ObjectPath.stringify(['a.b.'],'"'), '["a.b."]', 'incorrectly stringified dots from inside brackets');
-		assert.deepEqual(ObjectPath.stringify(['"','\\\''],'"'), '["\\\""]["\\\'"]', 'incorrectly stringified escaped quotes');
+		assert.deepEqual(ObjectPath.stringify(['"','\\\''],'"'), '["\\\""]["\\\\\'"]', 'incorrectly stringified escaped quotes');
 		assert.deepEqual(ObjectPath.stringify(['\'','"'],'"'), '["\'"]["\\""]', 'incorrectly stringified unescaped quotes');
-		assert.deepEqual(ObjectPath.stringify(['\\"','\\\''],'"'), '["\\\\""]["\\\'"]', 'incorrectly stringified escape character');
-		assert.deepEqual(ObjectPath.stringify(['[\'a\']','[\\"a\\"]'],'"'), '["[\'a\']"]["[\\\\"a\\\\"]"]', 'incorrectly stringified escape character');
+		assert.deepEqual(ObjectPath.stringify(['\\"','\\\''],'"'), '["\\\\\\""]["\\\\\'"]', 'incorrectly stringified escape character');
+		assert.deepEqual(ObjectPath.stringify(['[\'a\']','[\\"a\\"]'],'"'), '["[\'a\']"]["[\\\\\\"a\\\\\\"]"]', 'incorrectly stringified escape character');
 	});
 });
 
 describe('Normalize', function(){
 	it('normalizes a string', function(){
-		assert.deepEqual(ObjectPath.normalize('a.b["c"]'), '[\'a\'][\'b\'][\'c\']', 'incorrectly normalized a string with single quotes');
-		assert.deepEqual(ObjectPath.normalize('a.b["c"]','"'), '["a"]["b"]["c"]', 'incorrectly normalized a string with double quotes');
+		assert.deepEqual(ObjectPath.normalize('a.b["c"]'), 'a.b.c', 'incorrectly normalized a string with single quotes');
+		assert.deepEqual(ObjectPath.normalize('a.b["c"]','"'), 'a.b.c', 'incorrectly normalized a string with double quotes');
 	});
 
 	it('normalizes an array', function(){
-		assert.deepEqual(ObjectPath.normalize(['a','b','c']), '[\'a\'][\'b\'][\'c\']', 'incorrectly normalized an array with single quotes');
-		assert.deepEqual(ObjectPath.normalize(['a','b','c'],'"'), '["a"]["b"]["c"]', 'incorrectly normalized an array with double quotes');
+		assert.deepEqual(ObjectPath.normalize(['a','b','c']), 'a.b.c', 'incorrectly normalized an array with single quotes');
+		assert.deepEqual(ObjectPath.normalize(['a','b','c'],'"'), 'a.b.c', 'incorrectly normalized an array with double quotes');
 	});
 });
