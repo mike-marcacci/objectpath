@@ -33,7 +33,7 @@ ObjectPath.stringify(arr, [quote='\'']);
 var ObjectPath = require('objectpath');
 
 ObjectPath.stringify(['a','1','b','c','d','e','f','g']);
-// => '[\'a\'][\'1\'][\'b\'][\'c\'][\'d\'][\'e\'][\'f\'][\'g\']'
+// => "['a']['1']['b']['c']['d']['e']['f']['g']"
 
 
 ObjectPath.stringify(['a','1','b','c','d','e','f','g'],'"');
