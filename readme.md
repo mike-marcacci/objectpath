@@ -20,33 +20,43 @@ ObjectPath.parse(str)
 ```js
 var ObjectPath = require('objectpath');
 
-ObjectPath.parse('a[1].b.c.d["e"]["f"].g');
-// => ['a','1','b','c','d','e','f','g']
+ObjectPath.parse('a[1].b.c.d["e"]["f-f"].g');
+// => ['a','1','b','c','d','e','f-f','g']
 ```
 
 Build a Path String
 -------------------
 
-ObjectPath.stringify(arr, [quote='\'']);
+ObjectPath.stringify(arr, [quote="'"], [forceQuote=false]);
 
 ```js
 var ObjectPath = require('objectpath');
 
-ObjectPath.stringify(['a','1','b','c','d','e','f','g']);
-// => "['a']['1']['b']['c']['d']['e']['f']['g']"
+ObjectPath.stringify(['a','1','b','c','d-d','e']);
+// => "a[1].b.c['d-d'].e"
 
 
-ObjectPath.stringify(['a','1','b','c','d','e','f','g'],'"');
-// => '["a"]["1"]["b"]["c"]["d"]["e"]["f"]["g"]'
+ObjectPath.stringify(['a','1','b','c','d-d','e'],'"');
+// => 'a[1].b.c["d-d"].e'
+
+
+ObjectPath.stringify(['a','1','b','c','d-d','e'],"'", true);
+// => "['a']['1']['b']['c']['d-d']['e']"
 ```
 
 Normalize a Path
 ----------------
 
-ObjectPath.normalize(str)
+ObjectPath.normalize(str, [quote="'"], [forceQuote=false])
 
 ```js
 var ObjectPath = require('objectpath');
 
-ObjectPath.normalize('a[1].b.c.d["e"]["f"].g');
-// => '["a"]["1"]["b"]["c"]["d"]["e"]["f"]["g"]'
+ObjectPath.normalize('a[1].b.c.d["e"]["f-f"].g');
+// => "a[1].b.c.d.e['f-f'].g"
+
+ObjectPath.normalize('a[1].b.c.d["e"]["f-f"].g', '"');
+// => 'a[1].b.c.d.e["f-f"].g'
+
+ObjectPath.normalize('a[1].b.c.d["e"]["f-f"].g', "'", true);
+// => "['a']['1']['b']['c']['d']['e']['f-f']['g']"
